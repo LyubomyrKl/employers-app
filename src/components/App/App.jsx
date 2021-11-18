@@ -10,8 +10,8 @@ import './App.css';
 
 
 function App() {
-    let maxId = 4
 
+    const [maxId, setMaxId] = useState(4)
     const [data, setData] = useState([
         {name: "Anna Kostiuk", salary: 800, increase: false, rise: false, id: 1},
         {name: "Inna Kostiuk", salary: 1232, increase: false, rise: false, id: 2},
@@ -24,16 +24,18 @@ function App() {
     }
 
     const addItem = (name,salary ) => {
-
-        let item = {
-            name,
-            salary,
-            increase: false,
-            rise: false,
-            id: maxId
+        if(name.length > 3 && salary.length > 1){
+            let item = {
+                name,
+                salary,
+                increase: false,
+                rise: false,
+                id: maxId
+            }
+            setMaxId(maxId + 1)
+            setData([...data, item])
         }
-
-        setData([...data, item])
+        return
     }
 
     const onToggleProp = (id, prop) => {
